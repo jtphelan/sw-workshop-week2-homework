@@ -3,10 +3,8 @@
     <b-navbar type="dark" variant="info">
       <b-navbar-brand href="#">Rick & Morty</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item to="/" :active="$route.path === '/'">Episodes</b-nav-item>
-        <b-nav-item to="/characters" :active="$route.path === '/characters'"
-          >Characters</b-nav-item
-        >
+        <b-nav-item to="/">Episodes</b-nav-item>
+        <!-- Populate navbar with more routes! -->
       </b-navbar-nav>
     </b-navbar>
     <b-container>

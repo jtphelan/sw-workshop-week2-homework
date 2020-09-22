@@ -8,13 +8,18 @@
       </b-navbar-nav>
     </b-navbar>
     <b-container>
-      <router-view />
+      <Episodes />
     </b-container>
   </div>
 </template>
 
 <script>
-export default {};
+import Episodes from './views/Episodes.vue';
+export default {
+  components: {
+    Episodes,
+  },
+};
 </script>
 
 <style>

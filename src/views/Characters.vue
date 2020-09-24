@@ -15,6 +15,7 @@
           <b-card-text>
             {{ character.location.name }}
           </b-card-text>
+          <b-button variant="info">Add to favorites</b-button>
         </b-card>
       </b-col>
     </template>
@@ -23,9 +24,8 @@
 
 <script>
 import axios from 'axios';
-
-axios.defaults.baseURL = 'https://rickandmortyapi.com/api/';
 export default {
+  inject: ['baseUrl'],
   data() {
     return {
       characters: [],
@@ -35,7 +35,7 @@ export default {
   created() {
     this.isLoading = true;
     axios
-      .get('/character')
+      .get(this.baseUrl + '/character')
       .then((res) => {
         this.characters = res.data.results;
       })

@@ -5,6 +5,7 @@ import './plugins/bootstrap-vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
+import store from './store';
 
 Vue.use(VueRouter);
 
@@ -22,4 +23,5 @@ new Vue({
   provide: {
     baseUrl: 'https://rickandmortyapi.com/api/',
   },
+  store,
 }).$mount('#app');

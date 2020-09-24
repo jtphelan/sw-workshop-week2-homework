@@ -28,9 +28,16 @@ export default {
       isLoading: false,
     };
   },
+  props: {
+    id: {
+      type: String,
+      required: true,
+      default: ''
+    }
+  },
   created() {
     axios
-      .get(`/character/1`) // replace 1 here with an actual character id
+      .get(`/character/${this.id}`) // replace 1 here with an actual character id
       .then((res) => {
         this.character = res.data;
       })

@@ -5,6 +5,7 @@
     </div>
     <template v-else>
       <b-col cols="3" v-for="character in characters" :key="character.id">
+        <router-link :to="{name: 'character', params: { id: character.id }}">
         <b-card
           :title="character.name"
           :img-src="character.image"
@@ -16,6 +17,7 @@
             {{ character.location.name }}
           </b-card-text>
         </b-card>
+        </router-link>
       </b-col>
     </template>
   </b-row>

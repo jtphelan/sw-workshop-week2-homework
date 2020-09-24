@@ -24,24 +24,27 @@
 
 <script>
 import axios from 'axios';
+import { mapState } from 'vuex';
 export default {
   inject: ['baseUrl'],
   data() {
     return {
-      characters: [],
       isLoading: false,
     };
   },
+  computed: {
+    ...mapState(['characters']),
+  },
   created() {
-    this.isLoading = true;
-    axios
-      .get(this.baseUrl + '/character')
-      .then((res) => {
-        this.characters = res.data.results;
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
+    // this.isLoading = true;
+    // axios
+    //   .get(this.baseUrl + '/character')
+    //   .then((res) => {
+    //     this.characters = res.data.results;
+    //   })
+    //   .finally(() => {
+    //     this.isLoading = false;
+    //   });
   },
 };
 </script>

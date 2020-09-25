@@ -17,12 +17,7 @@
           <b-card-text>
             {{ character.location.name }}
           </b-card-text>
-          <b-button
-            variant="info"
-            :disabled="isCharacterInFavorites(character.шв)"
-            @click="addToFavorites(character)"
-            >Add to favorites</b-button
-          >
+          <b-button variant="info">Add to favorites</b-button>
         </b-card>
         </router-link>
       </b-col>

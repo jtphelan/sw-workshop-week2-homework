@@ -18,7 +18,7 @@
           </b-card-text>
           <b-button
             variant="info"
-            :disabled="isCharacterInFavorites"
+            :disabled="isCharacterInFavorites(character.шв)"
             @click="addToFavorites(character)"
             >Add to favorites</b-button
           >
@@ -32,7 +32,10 @@
 import { mapActions, mapGetters, mapState } from 'vuex';
 export default {
   computed: {
-    ...mapState(['characters', 'isLoading']),
+    ...mapState('char', {
+      characters: (state) => state.characters,
+      isLoading: (state) => state.isLoading,
+    }),
     ...mapGetters(['isCharacterInFavorites']),
   },
   methods: {

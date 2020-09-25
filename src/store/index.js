@@ -7,13 +7,12 @@ axios.defaults.baseURL = 'https://rickandmortyapi.com/api/';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
+const char = {
+  namespaced: true,
+  state: () => ({
     characters: [],
     isLoading: false,
-    error: null,
-    favoriteCharacters: [],
-  },
+  }),
   mutations: {
     [types.REQUEST_CHARACTERS](state) {
       state.isLoading = true;
@@ -28,14 +27,6 @@ export default new Vuex.Store({
       state.isLoading = false;
       state.error = 'Oh no! Something wrong happened!';
     },
-    [types.ADD_TO_FAVORITES](state, character) {
-      state.favoriteCharacters.push(character);
-    },
-    [types.REMOVE_FROM_FAVORITES](state, id) {
-      state.favoriteCharacters = state.favoriteCharacters.filter(
-        (char) => char.id !== id
-      );
-    },
   },
   actions: {
     fetchCharacters({ commit }) {
@@ -49,6 +40,28 @@ export default new Vuex.Store({
           commit(types.RECEIVE_CHARACTERS_ERROR);
         });
     },
+  },
+};
+
+export default new Vuex.Store({
+  modules: {
+    char,
+  },
+  state: {
+    error: null,
+    favoriteCharacters: [],
+  },
+  mutations: {
+    [types.ADD_TO_FAVORITES](state, character) {
+      state.favoriteCharacters.push(character);
+    },
+    [types.REMOVE_FROM_FAVORITES](state, id) {
+      state.favoriteCharacters = state.favoriteCharacters.filter(
+        (char) => char.id !== id
+      );
+    },
+  },
+  actions: {
     addToFavorites({ commit }, payload) {
       commit(types.ADD_TO_FAVORITES, payload);
     },
@@ -58,7 +71,7 @@ export default new Vuex.Store({
   },
   getters: {
     isCharacterInFavorites: (state) => (id) => {
-      return state.favoriteCharacters.find((char) => char.id === id);
+      return state.favoriteCharacters.some((char) => char.id === id);
     },
   },
 });

@@ -22,7 +22,7 @@ export default {
     Episodes,
   },
   methods: {
-    ...mapActions(['fetchCharacters']),
+    ...mapActions('char', ['fetchCharacters']),
   },
   created() {
     this.fetchCharacters();

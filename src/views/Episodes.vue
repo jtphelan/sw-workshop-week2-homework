@@ -9,10 +9,8 @@
 
 <script>
 import axios from 'axios';
-
-axios.defaults.baseURL = 'https://rickandmortyapi.com/api/';
-
 export default {
+  inject: ['baseUrl'],
   data() {
     return {
       fields: ['id', 'name', 'air_date', 'episode'],
@@ -23,7 +21,7 @@ export default {
   created() {
     this.isLoading = true;
     axios
-      .get('/episode')
+      .get(this.baseUrl + '/episode')
       .then((res) => {
         this.episodes = res.data.results;
       })

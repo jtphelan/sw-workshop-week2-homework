@@ -11,11 +11,17 @@
           :img-alt="character.name"
           img-top
           class="mb-2"
+          :class="{ colored: isCharacterInFavorites(character.id) }"
         >
           <b-card-text>
             {{ character.location.name }}
           </b-card-text>
-          <b-button variant="info">Add to favorites</b-button>
+          <b-button
+            variant="info"
+            :disabled="isCharacterInFavorites"
+            @click="addToFavorites(character)"
+            >Add to favorites</b-button
+          >
         </b-card>
       </b-col>
     </template>
@@ -23,28 +29,14 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { mapState } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 export default {
-  inject: ['baseUrl'],
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
   computed: {
-    ...mapState(['characters']),
+    ...mapState(['characters', 'isLoading']),
+    ...mapGetters(['isCharacterInFavorites']),
   },
-  created() {
-    // this.isLoading = true;
-    // axios
-    //   .get(this.baseUrl + '/character')
-    //   .then((res) => {
-    //     this.characters = res.data.results;
-    //   })
-    //   .finally(() => {
-    //     this.isLoading = false;
-    //   });
+  methods: {
+    ...mapActions(['addToFavorites']),
   },
 };
 </script>

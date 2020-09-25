@@ -16,9 +16,16 @@
 
 <script>
 import Episodes from './views/Episodes.vue';
+import { mapActions } from 'vuex';
 export default {
   components: {
     Episodes,
+  },
+  methods: {
+    ...mapActions(['fetchCharacters']),
+  },
+  created() {
+    this.fetchCharacters();
   },
 };
 </script>
